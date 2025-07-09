@@ -2,8 +2,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional
+from pathlib import Path
 import json
 import os
+
 from core.optimizer import RouteOptimizer
 from utils.google_maps import GoogleMapsClient
 
@@ -78,20 +80,17 @@ async def optimize_route(request: OptimizationRequest):
     Optimize delivery route based on provided delivery points and constraints.
     """
     try:
-        # Validate input
         if len(request.delivery_points) < 2:
             raise HTTPException(
                 status_code=400,
                 detail="At least 2 delivery points are required"
             )
 
-        # Get distance matrix from Google Maps (or use mock data)
         distance_matrix = await google_maps_client.get_distance_matrix(
             request.delivery_points + [request.start_location],
             consider_traffic=request.consider_traffic
         )
 
-        # Run optimization algorithm
         optimized_route = route_optimizer.optimize(
             delivery_points=request.delivery_points,
             vehicle=request.vehicle,
@@ -111,8 +110,9 @@ async def get_sample_data():
     Returns sample delivery data for testing Flutter UI.
     """
     try:
-        # Load mock data
-        data_path = os.path.join("data", "mock_deliveries.json")
+        data_path = Path(__file__).parent.parent / "data" / "mock_deliveries.json"
+        data_path = data_path.resolve()
+
         with open(data_path, 'r') as f:
             sample_data = json.load(f)
 

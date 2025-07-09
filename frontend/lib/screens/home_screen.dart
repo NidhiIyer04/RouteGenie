@@ -99,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
       // Replace with your actual IP address
-      const String baseUrl = 'http://192.168.1.100:8000'; // Change this to your local IP
+      const String baseUrl = 'http://172.31.96.1:8000'; // Change this to your local IP
       final response = await http.post(
         Uri.parse('$baseUrl/optimize'),
         headers: {'Content-Type': 'application/json'},

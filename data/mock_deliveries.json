@@ -1,0 +1,25 @@
+{
+  "delivery_points": [
+    {
+      "id": "dp1",
+      "address": "India Gate, New Delhi",
+      "lat": 28.6129,
+      "lon": 77.2295,
+      "size": "small",
+      "priority": 3
+    },
+    {
+      "id": "dp2",
+      "address": "Connaught Place, New Delhi",
+      "lat": 28.6315,
+      "lon": 77.2167,
+      "size": "medium",
+      "priority": 2
+    }
+  ],
+  "start_location": {
+    "address": "Warehouse A",
+    "lat": 28.6139,
+    "lon": 77.2090
+  }
+}

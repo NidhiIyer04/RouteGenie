@@ -8,6 +8,12 @@ class StartLocation {
     required this.lat,
     required this.lon,
   });
+
+  Map<String, dynamic> toJson() => {
+        'address': address,
+        'lat': lat,
+        'lon': lon,
+      };
 }
 
 class DeliveryPoint {
@@ -26,6 +32,15 @@ class DeliveryPoint {
     required this.size,
     required this.priority,
   });
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'address': address,
+        'lat': lat,
+        'lon': lon,
+        'size': size,
+        'priority': priority,
+      };
 }
 
 class Vehicle {
@@ -62,20 +77,9 @@ class OptimizationRequest {
   });
 
   Map<String, dynamic> toJson() => {
-        'deliveryPoints': deliveryPoints.map((dp) => {
-              'id': dp.id,
-              'address': dp.address,
-              'lat': dp.lat,
-              'lon': dp.lon,
-              'size': dp.size,
-              'priority': dp.priority,
-            }).toList(),
+        'deliveryPoints': deliveryPoints.map((dp) => dp.toJson()).toList(),
         'vehicle': vehicle.toJson(),
-        'startLocation': {
-          'address': startLocation.address,
-          'lat': startLocation.lat,
-          'lon': startLocation.lon,
-        },
+        'startLocation': startLocation.toJson(),
         'considerTraffic': considerTraffic,
         'optimizationGoal': optimizationGoal,
       };
@@ -113,18 +117,27 @@ class OptimizationResult {
 }
 
 class RouteSegment {
+  final String fromPoint;
+  final String toPoint;
   final double distanceKm;
   final int durationMinutes;
+  final int trafficDelayMinutes;
 
   RouteSegment({
+    required this.fromPoint,
+    required this.toPoint,
     required this.distanceKm,
     required this.durationMinutes,
+    required this.trafficDelayMinutes,
   });
 
   factory RouteSegment.fromJson(Map<String, dynamic> json) {
     return RouteSegment(
+      fromPoint: json['from_point'],
+      toPoint: json['to_point'],
       distanceKm: (json['distance_km'] ?? 0).toDouble(),
       durationMinutes: json['duration_minutes'] ?? 0,
+      trafficDelayMinutes: json['traffic_delay_minutes'] ?? 0,
     );
   }
 }
