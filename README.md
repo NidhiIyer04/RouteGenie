@@ -1,59 +1,74 @@
-Certainly! Here's a clean and professional README.md for your RouteGenie Flutter project:
-
-````markdown
 # RouteGenie
 
-RouteGenie is a Flutter-based mobile application for route optimization and delivery planning. It allows users to input delivery points, select a vehicle type, and get the most efficient delivery route based on selected criteria (time, distance, or fuel). The app communicates with a FastAPI backend to compute optimized routes.
+A Flutter app for last‑mile delivery route optimization with Google Maps integration.
 
 ## Features
-
-- Select vehicle type and fuel efficiency
-- Choose start location and delivery points
-- Optimize routes based on time, distance, or fuel
-- Visualize optimized routes on Google Maps
-- See total distance, time, fuel cost, and optimization score
-
-## Prerequisites
-
-Before running the app, ensure the following tools are installed:
-
-- Flutter (latest stable version recommended)
-- Android Studio or VS Code with Flutter and Dart plugins
-- Android SDK with emulator or physical device setup
-- FastAPI backend running locally or on server
-- Dart SDK
-- NDK 27.0.12077973
+- Add and manage delivery points
+- Optimize routes by time, distance, or fuel
+- Visualize routes on Google Maps
+- Secure API key management with local properties
 
 ## Getting Started
 
+### Frontend (Flutter)
 1. Clone the repository:
-
    ```bash
-   git clone https://github.com/your-username/RouteGenie.git
-   cd RouteGenie/frontend
+   git clone https://github.com/yourusername/RouteGenie.git
+   cd RouteGenie/frontend_new
 ````
 
-2. Install Flutter dependencies:
+2. Install dependencies:
 
    ```bash
    flutter pub get
    ```
 
-3. Start the FastAPI backend server:
+3. Add your local config:
 
-   ```bash
-   cd backend
-   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+   ```
+   # android/local.properties
+   MAPS_API_KEY=your_google_maps_api_key
    ```
 
-4. Run the app on an emulator or device:
+4. Run the app:
 
    ```bash
    flutter run
    ```
 
-## Troubleshooting
+---
 
-* If Gradle fails due to NDK version mismatch, ensure build.gradle.kts specifies ndkVersion = "27.0.12077973"
-* If packages are missing, run flutter pub get
-* If backend is not reachable, ensure correct IP and port are used in baseUrl
+### Backend (FastAPI / Python)
+
+1. Navigate to the backend directory:
+
+   ```bash
+   cd ../backend
+   ```
+
+2. (Optional) Create and activate a virtual environment:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Run the server:
+
+   ```bash
+   uvicorn main:app --reload --host 0.0.0.0 --port 8000
+   ```
+
+---
+
+## Notes
+
+* `.env` and `android/local.properties` are **gitignored** to keep secrets safe.
+* Uses `flutter_dotenv` and Gradle `resValue` to load API keys securely.
+
