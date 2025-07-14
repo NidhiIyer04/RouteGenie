@@ -1,3 +1,4 @@
 .env
 /android/local.properties
-../frontend/"venv/" 
+../frontend/"venv/"
+venv/
