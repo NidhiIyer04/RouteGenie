@@ -42,7 +42,7 @@ android/app/debug
 android/app/profile
 android/app/release
 
-# Secrets (✅ do NOT commit these)
+# Secrets (do NOT commit these)
 .env
 android/local.properties
 ../frontend/
