@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+pydantic
+python-dotenv
+aiohttp
+httpx
+googlemaps
+requests
+networkx
+numpy

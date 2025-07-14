@@ -1,6 +1,6 @@
 # RouteGenie
 
-A Flutter app for last‑mile delivery route optimization with Google Maps integration.
+RouteGenie is an route optimization app designed to help logistics managers, dispatchers, and delivery drivers plan the most efficient delivery routes. It allows users to input delivery points, select a vehicle type, and choose optimization preferences like minimizing time, distance, or fuel cost. The app then communicates with a backend powered by machine learning and real-time traffic data to generate an optimized delivery route. RouteGenie is especially useful for last-mile delivery scenarios, helping businesses save time, reduce operational costs, and improve customer satisfaction by making deliveries faster and smarter.
 
 ## Features
 - Add and manage delivery points
@@ -15,7 +15,7 @@ A Flutter app for last‑mile delivery route optimization with Google Maps integ
    ```bash
    git clone https://github.com/yourusername/RouteGenie.git
    cd RouteGenie/frontend_new
-````
+   ```
 
 2. Install dependencies:
 
